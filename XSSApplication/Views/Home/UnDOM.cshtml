@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "UnDOM Vulnerability";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+
+<h1>
+    Welcome to the UnDOM XSS page,
+    <script>
+        var pos = document.URL.indexOf("context=") + 8;
+        var val = (document.URL.substring(pos, document.URL.length));
+        document.write(val);
+    </script> !
+</h1>
+<p>Paste a script into the URL and see if DOM works, PSssst It won't because the val won't be unescaped. E.G Script DOM/?context=[INSERTJAVASCRIPTHERE]</p>
+

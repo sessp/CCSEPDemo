@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "UnPersistent";
+}
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<h1>Welcome to the vulnerable page</h1>
+<p>Please try to hack me, I dare you.</p>
+<input type="text" id="per" name="persistent" placeholder="Persistent goes here">
+<button onclick="Persistent()">Submit Persistent!</button>
+<button onclick="getInfo()">Get Persistent!</button>
+<div id="Content">
+</div>
+
+<script>
+    function Persistent() {
+        console.log(JSON.stringify({ d: $("#per").val() }));
+        $.ajax({
+            url: '/api/Values/Add/',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify({ d: $("#per").val() }),
+            processData: false,
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    }
+</script>
+<script>
+    function getInfo() {
+        $.ajax({
+            url: '/api/Values/Get/0',
+            type: 'get',
+            contentType: 'application/json',
+            processData: false,
+            success: function (data, textStatus, jQxhr) {
+                var obj = data;
+                console.log(obj);
+                $("#Content").html(obj.value);
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    }
+</script>
+
