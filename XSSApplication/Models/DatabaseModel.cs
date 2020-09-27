@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 
-namespace XSSApplication.Models
+namespace CCSEPAssignment.Models
 {
     public class DatabaseModel
     {

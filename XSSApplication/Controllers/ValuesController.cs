@@ -5,9 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using XSSApplication.Models;
+using CCSEPAssignment.Models;
 
-namespace XSSApplication.Controllers
+namespace CCSEPAssignment.Controllers
 {
     public class ValuesController : ApiController
     {

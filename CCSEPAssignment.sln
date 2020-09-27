@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XSSApplication", "XSSApplication\XSSApplication.csproj", "{C19E9031-EC55-40AF-BD38-7E95679B1A2E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCSEPAssignment", "XSSApplication\CCSEPAssignment.csproj", "{C19E9031-EC55-40AF-BD38-7E95679B1A2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
