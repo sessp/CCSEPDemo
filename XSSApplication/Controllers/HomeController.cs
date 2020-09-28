@@ -11,6 +11,7 @@ namespace CCSEPAssignment.Controllers
         public ActionResult Index()
         {
             return View();
+            //test
         }
 
         [ValidateInput(false)]
