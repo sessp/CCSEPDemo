@@ -29,5 +29,13 @@ namespace CCSEPAssignment.Controllers
 
             return View();
         }
+
+        [ValidateInput(false)]
+        public ActionResult Admin()
+        {
+
+
+            return View();
+        }
     }
 }

@@ -1,36 +1,73 @@
 ﻿@{
-    ViewBag.Title = "XSS Vulnerability Persistent";
+    ViewBag.Title = "Vulnerable Example";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<h1>Welcome to the vulnerable page</h1>
-<p>Please a javascript script to perform XSS</p>
-<input type="text" id="per" name="persistent" placeholder="Persistent goes here">
-<button onclick="Persistent()">Submit Persistent!</button>
-<button onclick="getInfo()">Get Persistent!</button>
-<div id="Content">
+<div class="full_wrap">
+    <div class="login_wrap">
+        <div class="title_wrap">
+            <p>Login</p>
+        </div>
+        <div class="content_wrap">
+            <div class="input_wrap">
+                <label>Username</label>
+                <input type="text" id="username" name="username" placeholder="Username">
+            </div>
+
+            <div class="input_wrap">
+                <label>Password</label>
+                <input type="text" id="password" name="password" placeholder="Password">
+            </div>
+        </div>
+        <div class="submit_wrap">
+            <button class="submit_form">Submit</button>
+        </div>
+    </div>
+    <div class="view_wrap">
+        <div class="view_div">
+            <h1>@ViewBag.Title.</h1>
+            <p>
+                This is for only examples purposes, please do not input any
+                sensitive information! This shows a vulnerability within a
+                login system. When an incorrect login is given, it is logged.
+            </p>
+
+            <br />
+            <h3>Vulnerability example</h3>
+            <p><code>&lt;script&gt;alert("hello world");&lt;/script&gt;</code></p>
+
+            <br /><br />
+            <p>
+                When you have submitted the vulnerability click this button to see what will
+                happens to an admin user when they access logs.
+            </p>
+            <button class="get_vul">Get Vulnerability!</button>
+
+            <br /><br />
+            <div id="Content"></div>
+        </div>
+    </div>
 </div>
 
 <script>
-    function Persistent() {
-        console.log(JSON.stringify({ d: $("#per").val() }));
+    $('.submit_form').on('click', function () {
+        var username = $("#username").val();
+        var password = $("#password").val();
+
         $.ajax({
             url: '/api/Values/Add/',
             type: 'post',
             contentType: 'application/json',
-            data: JSON.stringify({ d: $("#per").val() }),
+            data: JSON.stringify({ username: username, password: password }),
             processData: false,
             error: function (jqXhr, textStatus, errorThrown) {
                 console.log(errorThrown);
             }
         });
-    }
-</script>
-<script>
-    function getInfo() {
+    });
+
+    $('.get_vul').on('click', function () {
         $.ajax({
-            url: '/api/Values/Get/0',
+            url: '/api/Values/Get/2',
             type: 'get',
             contentType: 'application/json',
             processData: false,
@@ -43,6 +80,6 @@
                 console.log(errorThrown);
             }
         });
-    }
+    });
 </script>
 

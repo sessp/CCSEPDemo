@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Admin Logs";
+}
+
+<div class="full_wrap">
+    <div class="table_wrap">
+        <table class="table_view">
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Password</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Remove</td>
+                <td>me</td>
+            </tr>
+        </table>
+    </div>
+    <div class="view_wrap" style="width: 500px;">
+        <div class="view_div">
+            <h1>@ViewBag.Title.</h1>
+            <p>
+                As an admin you need to check the login logs to ensure no suspicious activity
+                has been occurring. When you are ready to view the logs please click this
+                button and they will appear!
+            </p>
+            <br />
+            <button class="view_logs">View Logs!</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.view_logs').on('click', function () {
+        $.ajax({
+            url: '/api/Values/Get/2',
+            type: 'get',
+            contentType: 'application/json',
+            processData: false,
+            success: function (data, textStatus, jQxhr) {
+                var obj = data;
+                console.log(obj);
+                $("#Content").html(obj);
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    });
+</script>
+

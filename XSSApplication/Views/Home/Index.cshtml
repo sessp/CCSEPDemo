@@ -1,31 +1,43 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    <div class="jumbotron">
+        <h1>
+            Second order (Blind) XSS
+        </h1>
+        <p class="lead">
+            Stored attacks are those where the injected script is permanently stored on the target servers,
+            such as in a database, in a message forum, visitor log, comment field, etc. The victim then retrieves the malicious
+            script from the server when it requests the stored information.
+        </p>
+        <div style="display:flex; padding-top:10px;">
+            <p><a href="../Home/Persistent" class="btn btn-primary btn-lg">Vulnerable Example &raquo;</a></p>
+            <p style="padding-left: 20px"><a href="../Home/UnPersistent" class="btn btn-primary btn-lg">Patched Example &raquo;</a></p>
+        </div>
+    </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>Learn more</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Cross-site scripting is a widespread breed of web vulnerabilities which allows
+            hackers to inject malicious code from their untrusted websites into the webpages
+            that are are being viewed by unknowing victims.
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p><a class="btn btn-default" href="https://www.cse.wustl.edu/~jain/cse571-07/ftp/xsscript/index.html">Learn more &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Information slides</h2>
+        <p>
+            Alongside this vulnerability there are informational slides about how to overcome
+            and defend against such vulnerability.</p>
+        <p><a class="btn btn-default" target="_blank" href="https://docs.google.com/presentation/d/1B_Zfi9v9PkJHw7hkjxCTDZ8ytnqP8fqlb0EMikIOrVw/edit?usp=sharing">Learn more &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Credits</h2>
+        <p>> Rares Popa - 19159700</p>
+        <p>> Peter Sessarego - 19127639</p>
+        <p>> Sebastian Ng - 19092986</p>
     </div>
 </div>
