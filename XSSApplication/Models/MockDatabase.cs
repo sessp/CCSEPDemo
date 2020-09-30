@@ -7,30 +7,22 @@ using System.Web.UI.WebControls;
 
 namespace CCSEPAssignment.Models
 {
-    public class DatabaseModel
+    public class MockDatabase
     {
-        private static DatabaseModel db = null;
-        private List<Data> entries;
-        private DatabaseModel()
+        private static MockDatabase db = null;
+        private List<AccountData> entries;
+        private MockDatabase()
         {
-            entries = new List<Data>();
+            entries = new List<AccountData>();
         }
 
-        public static DatabaseModel getDatabase()
+        public static MockDatabase getDB()
         {
             if (db == null)
             {
-                Debug.WriteLine("\n" + "TestPrivateConstructor" + "\n");
-                db = new DatabaseModel();
+                db = new MockDatabase();
             }
             return db;
-        }
-
-        public String get(int i)
-        {
-            Debug.WriteLine("\n" + "TestGetDB" + "\n");
-            Debug.WriteLine("\n" + entries.First().username + "\n");
-            return entries.First().username;
         }
 
         public String getUsername(int i)
@@ -40,7 +32,7 @@ namespace CCSEPAssignment.Models
             return entries[i].username;
         }
 
-        public List<Data> getData()
+        public List<AccountData> getData()
         {
             return entries;
         }
@@ -73,7 +65,7 @@ namespace CCSEPAssignment.Models
             {
                 Debug.WriteLine("\n" + "Adding to DB" + "\n");
                 Debug.WriteLine("\n" + u + " " + p + "\n");
-                Data data = new Data();
+                AccountData data = new AccountData();
                 data.username = u;
                 data.password = p;
                 entries.Add(data);

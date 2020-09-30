@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CCSEPAssignment.Models
 {
-    public class Data
+    public class AccountData
     {
         public string username;
         public string password;

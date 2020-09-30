@@ -6,28 +6,19 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using CCSEPAssignment.Models;
+using System.Web.Security.AntiXss;
 
 namespace CCSEPAssignment.Controllers
 {
     public class ValuesController : ApiController
     {
-        // GET api/<controller>
-        [Route("api/Values/Get/{id}")]
-        [HttpGet]
-        public string Get(int id)
-        {
-            Debug.WriteLine("\n" + "TestGet" + "\n");
-           // Debug.WriteLine("\n" + DatabaseModel.getDatabase().get(id) + "\n");
-            return DatabaseModel.getDatabase().get(id); 
-        }
 
         // GET api/<controller>
         [Route("api/Values/Update/")]
         [HttpGet]
-        public List<Data> UpdateDB()
+        public List<AccountData> UpdateDB()
         {
-            Debug.WriteLine("\n" + "Retrieving all entries" + "\n");
-            return DatabaseModel.getDatabase().getData();
+            return MockDatabase.getDB().getData();
         }
 
         // GET api/<controller>
@@ -35,8 +26,7 @@ namespace CCSEPAssignment.Controllers
         [HttpGet]
         public void PrintDB()
         {
-            Debug.WriteLine("\n" + "PrintDBTest" + "\n");
-            DatabaseModel.getDatabase().PrintDatabase();
+            MockDatabase.getDB().PrintDatabase();
         }
 
         // GET api/<controller>
@@ -45,16 +35,18 @@ namespace CCSEPAssignment.Controllers
         public int GetCount()
         {
             Debug.WriteLine("\n" + "TestGetCount" + "\n");
-            return DatabaseModel.getDatabase().getNumOfEntries();
+            return MockDatabase.getDB().getNumOfEntries();
         }
 
         // POST api/<controller>
         [Route("api/Values/Add/")]
         [HttpPost]
-        public bool Post([FromBody]Data data)
+        public bool Post([FromBody]AccountData data)
         {
-            Debug.WriteLine("\n" + "Added to DB: Username - " + data.username + " Password - " + data.password + "\n");
-            return DatabaseModel.getDatabase().add(data.username, data.password);
+            string encodedUsername = AntiXssEncoder.HtmlEncode(data.username, false);
+            string encodedPassword = AntiXssEncoder.HtmlEncode(data.password, false); 
+
+            return MockDatabase.getDB().add(encodedUsername, encodedPassword);
         }
     }
 }
