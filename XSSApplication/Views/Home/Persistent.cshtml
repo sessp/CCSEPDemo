@@ -2,53 +2,77 @@
     ViewBag.Title = "Vulnerable Example";
 }
 
-<div class="full_wrap">
-    <div class="login_wrap">
-        <div class="title_wrap">
-            <p>Login</p>
-        </div>
-        <div class="content_wrap">
-            <div class="input_wrap">
-                <label>Username</label>
-                <input type="text" id="username" name="username" placeholder="Username">
+<br />
+<div id="addAlert"></div>
+<div id="display">
+    <div class="full_wrap">
+        <div class="login_wrap">
+            <div class="title_wrap">
+                <p>Login</p>
             </div>
+            <div class="content_wrap">
+                <div class="input_wrap">
+                    <label>Username</label>
+                    <input type="text" id="username" name="username" placeholder="Username">
+                </div>
 
-            <div class="input_wrap">
-                <label>Password</label>
-                <input type="text" id="password" name="password" placeholder="Password">
+                <div class="input_wrap">
+                    <label>Password</label>
+                    <input type="text" id="password" name="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="submit_wrap">
+                <button class="submit_form">Submit</button>
             </div>
         </div>
-        <div class="submit_wrap">
-            <button class="submit_form">Submit</button>
-        </div>
-    </div>
-    <div class="view_wrap">
-        <div class="view_div">
-            <h1>@ViewBag.Title.</h1>
-            <p>
-                This is for only examples purposes, please do not input any
-                sensitive information! This shows a vulnerability within a
-                login system. When an incorrect login is given, it is logged.
-            </p>
+        <div class="view_wrap">
+            <div class="view_div">
+                <h1>@ViewBag.Title.</h1>
+                <p>
+                    This is for only examples purposes, please do not input any
+                    sensitive information! This shows a vulnerability within a
+                    login system. When an incorrect login is given, it is logged.
+                </p>
 
-            <br />
-            <h3>Vulnerability example</h3>
-            <p><code>&lt;script&gt;alert("hello world");&lt;/script&gt;</code></p>
+                <br />
+                <h3>Vulnerability example</h3>
+                <p><code>&lt;script&gt;alert("hello world");&lt;/script&gt;</code></p>
 
-            <br /><br />
-            <p>
-                When you have submitted the vulnerability click this button to see what will
-                happens to an admin user when they access logs.
-            </p>
-            <button class="get_vul">Get Vulnerability!</button>
+                <br /><br />
+                <p>
+                    Once you have submitted your vulnerability/test string, type in "<code>admin</code>" for both the username and password to
+                    view the next page.
+                </p>
+                <!--<button class="get_vul">Get Vulnerability!</button>-->
 
-            <br /><br />
-            <div id="Content"></div>
+                <br /><br />
+                <div id="Content"></div>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
+        function changePage() {
+            $.ajax({
+                url: '/Home/Admin',
+                type: 'get',
+                processData: false,
+                success: function (data, textStatus, jQxhr) {
+                    $("#display").fadeOut('fast', function () {
+                        $('#display').html($(data).find('#replaceMe').html());
+                        $("#display").fadeIn('fast');
+                    });
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                    var err = JSON.parse(jqXhr.responseText);
+                    alert(err.Message);
+                }
+            });
+    }
+
+
     $('.submit_form').on('click', function () {
         var username = $("#username").val();
         var password = $("#password").val();
@@ -59,6 +83,17 @@
             contentType: 'application/json',
             data: JSON.stringify({ username: username, password: password }),
             processData: false,
+            success: function (data, textStatus, jQxhr) {
+                console.log(data);
+                if (data == true)
+                {
+                    changePage();
+                }
+                else
+                {
+                    createAlert('Error', 'Your username or password is incorrect, please try again.', ' alert-danger"');
+                }
+            },
             error: function (jqXhr, textStatus, errorThrown) {
                 console.log(errorThrown);
             }
@@ -81,5 +116,51 @@
             }
         });
     });
-</script>
 
+    function createAlert(title, msg, type) {
+        $('#addAlert').empty();
+        $('#addAlert').append(
+            '<div class="alert' + type + 'role="alert">' +
+            '<h4 class="alert-heading">' + title + '</h4>' +
+            '<button type="button" class="close" data-dismiss="alert">' +
+            '&times;</button>' + msg + '</div>');
+    }
+
+    //$('.view_logss').on('click', function () {
+    function updateLog() {
+        $.ajax({
+            url: '/api/Values/Update/',
+            type: 'get',
+            contentType: 'application/json',
+            processData: false,
+            success: function (data, textStatus, jQxhr) {
+                // $("#invalidLoginTable tbody:tr").remove();
+
+                var entries = data;
+                console.log(entries);
+                for (var i = 0; i < entries.length; i++) {
+                    $("#invalidLoginTable > tbody:last-child").append("<tr><td>" + i + "</td><td>" + entries[i].username + "</td><td>" + entries[i].password + "</td></tr>");
+                }
+                //$("#Content").html(entries);
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    }
+
+    function printDB() {
+        $.ajax({
+            url: '/api/Values/printDB/',
+            type: 'get',
+            contentType: 'application/json',
+            processData: false,
+            success: function (data, textStatus, jQxhr) {
+                console.log('success');
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    }
+</script>

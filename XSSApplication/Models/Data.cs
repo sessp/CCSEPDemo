@@ -7,6 +7,7 @@ namespace CCSEPAssignment.Models
 {
     public class Data
     {
-        public string d;
+        public string username;
+        public string password;
     }
 }

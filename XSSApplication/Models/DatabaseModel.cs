@@ -20,7 +20,7 @@ namespace CCSEPAssignment.Models
         {
             if (db == null)
             {
-                Debug.WriteLine("\n" + "TestPrivateConstructor" + "\n"); 
+                Debug.WriteLine("\n" + "TestPrivateConstructor" + "\n");
                 db = new DatabaseModel();
             }
             return db;
@@ -29,17 +29,62 @@ namespace CCSEPAssignment.Models
         public String get(int i)
         {
             Debug.WriteLine("\n" + "TestGetDB" + "\n");
-            Debug.WriteLine("\n" + entries.First().d + "\n");
-           return entries.First().d;
+            Debug.WriteLine("\n" + entries.First().username + "\n");
+            return entries.First().username;
         }
 
-        public void add(string s)
+        public String getUsername(int i)
         {
-            Debug.WriteLine("\n" + "TestAddDB" + "\n");
-            Debug.WriteLine("\n" + s + "\n");
-            Data data = new Data();
-            data.d = s;
-            entries.Add(data);
+            Debug.WriteLine("\n" + "TestGetUsername" + "\n");
+            Debug.WriteLine("\n" + entries.First().username + "\n");
+            return entries[i].username;
+        }
+
+        public List<Data> getData()
+        {
+            return entries;
+        }
+
+        public String getPassword(int i)
+        {
+            Debug.WriteLine("\n" + "TestGetDB" + "\n");
+            Debug.WriteLine("\n" + entries.First().password + "\n");
+            return entries[i].password;
+        }
+
+        public void PrintDatabase()
+        {
+            //For testing purposes.
+            foreach (var v in entries)
+            {
+                Debug.WriteLine("\n" + "Entry U - " + v.username + " P- " + v.password + "\n");
+            }
+        }
+
+        public int getNumOfEntries()
+        {
+            return entries.Count;
+        }
+
+        public bool add(string u, string p)
+        {
+            bool result = false;
+            if (u != "admin" && p != "admin")
+            {
+                Debug.WriteLine("\n" + "Adding to DB" + "\n");
+                Debug.WriteLine("\n" + u + " " + p + "\n");
+                Data data = new Data();
+                data.username = u;
+                data.password = p;
+                entries.Add(data);
+
+            }
+            else
+            {
+                result = true;
+            }
+            return result;
+
         }
     }
 }

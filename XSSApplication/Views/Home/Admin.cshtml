@@ -2,19 +2,24 @@
     ViewBag.Title = "Admin Logs";
 }
 
+<div id="replaceMe">
 <div class="full_wrap">
     <div class="table_wrap">
-        <table class="table_view">
-            <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Password</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Remove</td>
-                <td>me</td>
-            </tr>
+        <table class="table_view" id="invalidLoginTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>-</td>
+                    <td>user</td>
+                    <td>qwerty123</td>
+                </tr>
+            </tbody>
         </table>
     </div>
     <div class="view_wrap" style="width: 500px;">
@@ -26,27 +31,11 @@
                 button and they will appear!
             </p>
             <br />
-            <button class="view_logs">View Logs!</button>
+            <button class="view_logss" onclick="updateLog()">View Logs!</button>
+            <br />
+            <!--<button class="print_db" onclick="printDB">Print the DB (Console)!</button>-->
         </div>
     </div>
 </div>
-
-<script>
-    $('.view_logs').on('click', function () {
-        $.ajax({
-            url: '/api/Values/Get/2',
-            type: 'get',
-            contentType: 'application/json',
-            processData: false,
-            success: function (data, textStatus, jQxhr) {
-                var obj = data;
-                console.log(obj);
-                $("#Content").html(obj);
-            },
-            error: function (jqXhr, textStatus, errorThrown) {
-                console.log(errorThrown);
-            }
-        });
-    });
-</script>
+</div>
 

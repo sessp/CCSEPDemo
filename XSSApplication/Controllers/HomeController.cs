@@ -22,13 +22,14 @@ namespace CCSEPAssignment.Controllers
             return View();
         }
 
+        /*
         [ValidateInput(false)]
         public ActionResult UnPersistent()
         {
 
 
             return View();
-        }
+        }*/
 
         [ValidateInput(false)]
         public ActionResult Admin()
