@@ -43,10 +43,10 @@ namespace CCSEPAssignment.Controllers
         [HttpPost]
         public bool Post([FromBody]AccountData data)
         {
-            string encodedUsername = AntiXssEncoder.HtmlEncode(data.username, false);
-            string encodedPassword = AntiXssEncoder.HtmlEncode(data.password, false); 
+            //string encodedUsername = AntiXssEncoder.HtmlEncode(data.username, false);
+            //string encodedPassword = AntiXssEncoder.HtmlEncode(data.password, false); 
 
-            return MockDatabase.getDB().add(encodedUsername, encodedPassword);
+            return MockDatabase.getDB().add(data.username, data.password);
         }
     }
 }

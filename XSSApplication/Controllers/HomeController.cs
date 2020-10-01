@@ -15,21 +15,13 @@ namespace CCSEPAssignment.Controllers
         }
 
         [ValidateInput(false)]
-        public ActionResult Persistent()
+        public ActionResult SecondOrder()
         {
 
 
             return View();
         }
 
-        /*
-        [ValidateInput(false)]
-        public ActionResult UnPersistent()
-        {
-
-
-            return View();
-        }*/
 
         [ValidateInput(false)]
         public ActionResult Admin()

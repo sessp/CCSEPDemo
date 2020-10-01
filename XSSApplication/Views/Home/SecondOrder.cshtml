@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="submit_wrap">
-                <button class="submit_form">Submit</button>
+                <button class="submit_form" id="submitB">Submit</button>
             </div>
         </div>
         <div class="view_wrap">
@@ -43,7 +43,8 @@
                     Once you have submitted your vulnerability/test string, type in "<code>admin</code>" for both the username and password to
                     view the next page.
                 </p>
-                <!--<button class="get_vul">Get Vulnerability!</button>-->
+                <!--<button onclick="testScript()"> Test! </button>-->
+                <input type="file" onchange="getTestFile(this)" />
 
                 <br /><br />
                 <div id="Content"></div>
@@ -138,8 +139,13 @@
 
                 var entries = data;
                 console.log(entries);
-                for (var i = 0; i < entries.length; i++) {
-                    $("#invalidLoginTable > tbody:last-child").append("<tr><td>" + i + "</td><td>" + entries[i].username + "</td><td>" + entries[i].password + "</td></tr>");
+                if (entries.legnth != 0) {
+                    for (var i = 0; i < entries.length; i++) {
+                        $("#invalidLoginTable > tbody:last-child").append("<tr><td>" + i + "</td><td>" + entries[i].username + "</td><td>" + entries[i].password + "</td></tr>");
+                    }
+                }
+                if(entries.length == 0) {
+                    createAlert('Error', 'There are no invalid login attempts to display. Please go back to the login page and put some invalid login attempts.', ' alert-danger"');
                 }
                 //$("#Content").html(entries);
             },
@@ -162,5 +168,35 @@
                 console.log(errorThrown);
             }
         });
+    }
+
+    function getTestFile(f) {
+        let file = f.files[0];
+        let r = new FileReader();
+        r.readAsText(file);
+        r.onload = function () {
+            var lines = r.result.split("\r\n");
+            testScript(lines);
+            //[\\r\\n]+
+            /*for (var i = 0; i < lines.length; i++) {
+                console.log(lines[i] + ' ' + lines.length);
+                testScript(lines[i]);
+            }*/
+        };
+        r.onerror = function () {
+            console.log(r.error);
+        };
+    }
+
+    function testScript(input) {
+        //document.getElementById('username').value = "test";
+        //document.getElementById('password').value = "test";
+        for (var i = 0; i < input.length; i++) {
+            console.log(input[i] + ' ' + input.length);
+            document.getElementById('username').value = "someusername";
+            document.getElementById('password').value = input[i];
+            document.getElementById('submitB').click();
+        }
+        printDB();
     }
 </script>
