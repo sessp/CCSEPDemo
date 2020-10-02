@@ -42,11 +42,12 @@ We recommend using Windows to test the **master** and **final_patched** branches
    * In our example it's in the web.config file in the CCSEPAssignment directory (not the web.config in the views directory).
    * You simply add your policy/rule and then test and edit the rule depending on the functionality of your website. Because our website has no other functionality we block most other scripts. In reality if this was a fully functioning website you would have to set up and test the CSP properly/put a lot of care into it.
    * In our case to patch you just uncomment the following code in that web.config file:
-   ```<httpProtocol>
+   ```       
+          <httpProtocol>
 		  <customHeaders>
 			  <add name="Content-Security-Policy" value="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'nonce-123456';" />
 		  </customHeaders>
-	 </httpProtocol>``` 
+	 </httpProtocol> 
 2. Encode Input and Output
    * In our example we HTML encode. As we said in the presentation there are many types of encoding and it all depends on where the untrusted user data is. Because ours is being inserted into the HTML (When we append/update the <table></table> we must use HTML encoding. 
    * It is best to use a library to encode. We use a HTML encoding method provided by the System.Web.Security.AntiXss library, a .NET Framework library.
@@ -54,7 +55,7 @@ We recommend using Windows to test the **master** and **final_patched** branches
    ```
             string encodedUsername = AntiXssEncoder.HtmlEncode(data.username, false);
             string encodedPassword = AntiXssEncoder.HtmlEncode(data.password, false); 
-            return MockDatabase.getDB().add(encodedUsername, encodedPassword);```
+            return MockDatabase.getDB().add(encodedUsername, encodedPassword); 
 3. Validate Input and Output
    * In our demo we use an extremely basic validator. **DO NOT USE THIS** in the real world, it would do next to nothing. Our validator is simply there as another proof of concept.
    * You can make your own validator or you can use a library to perform validation for you.
@@ -62,7 +63,7 @@ We recommend using Windows to test the **master** and **final_patched** branches
    ```        CustomValidator validator = new CustomValidator();
               string validUsername = validator.antiXssValidation(data.username);
               string validPassword = validator.antiXssValidation(data.password);
-              return MockDatabase.getDB().add(validUsername, validPassword);```
+              return MockDatabase.getDB().add(validUsername, validPassword); 
 
 ## About 
 
