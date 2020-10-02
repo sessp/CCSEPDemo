@@ -51,7 +51,7 @@ When running on whatever platform (we recommend **Windows**) make sure you are r
 		  </customHeaders>
 	 </httpProtocol> 
 2. Encode Input and Output
-   * In our example we HTML encode. As we said in the presentation there are many types of encoding and it all depends on where the untrusted user data is. Because ours is being inserted into the HTML (When we append/update the <table></table> we must use HTML encoding. 
+   * In our example we HTML encode. As we said in the presentation there are many types of encoding and it all depends on where the untrusted user data is. Because ours is being inserted into the HTML (When we append/update the table we must use HTML encoding. 
    * It is best to use a library to encode. We use a HTML encoding method provided by the System.Web.Security.AntiXss library, a .NET Framework library.
    * Specifically in our program make sure our encoder lines in the `...\CCSEPAssignmentDemo\XSSApplication\Controllers\ValuesController.cs` *Post* method are uncommented for the encoding to work and make sure you pass those variables to the mock database, rather than data.username and data.password.
    ```
