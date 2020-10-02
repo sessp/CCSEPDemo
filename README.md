@@ -9,6 +9,8 @@ This program is a website that has some other use which is not relevant to the a
 We recommend using Windows to test the **master** and **final_patched** branches. Any issues contact us and we will happily help or even do an assignment demonstration if you wish. The framework used is the .NET Framework, specifically .NET Core and .NET MVC and uses ASP. The programming languages are JavaScript, C##, JQuery + AJAX and HTML. You should not need to download anything, no frameworks, nada, if you use **Visual Studio** to run this program (which is what we recommend since we cant guarantee it will work on anythigng else).
 
 # How to run the program
+When running on whatever platform (we recommend **Windows**) make sure you are running/cloning the programs located in the **master** and **final_patched** branches. Why are there 4 branches in total? Refer to the Note to marker section down the bottom of this readme.
+
 ## How to run on windows
 * Download the app/clone the repository somewhere locally, preferably in your Visual Studio projects/solutions folder (however it doesnt really matter where).
 * Double click CCSEPAssignment.sln and open with the latest version of Visual Studio.
