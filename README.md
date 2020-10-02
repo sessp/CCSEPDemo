@@ -1,3 +1,6 @@
+# TODO 
+program description, how to run the program, how to detect, exploit and patch the bug
+
 # Group 7 - CCSEP Demo
 
 ![CCSEP - Demo](demo/login.png)
