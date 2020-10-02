@@ -62,12 +62,12 @@ namespace CCSEPAssignment.Controllers
         [HttpPost]
         public bool Post([FromBody]AccountData data)
         {
-            CustomValidator validator = new CustomValidator();
-            string validUsername = validator.antiXssValidation(data.username);
-            string validPassword = validator.antiXssValidation(data.password);
-            string encodedUsername = AntiXssEncoder.HtmlEncode(validUsername, false);
-            string encodedPassword = AntiXssEncoder.HtmlEncode(validPassword, false); 
-            return MockDatabase.getDB().add(encodedUsername, encodedPassword);
+           // CustomValidator validator = new CustomValidator();
+           // string validUsername = validator.antiXssValidation(data.username);
+           // string validPassword = validator.antiXssValidation(data.password);
+           // string encodedUsername = AntiXssEncoder.HtmlEncode(validUsername, false);
+           // string encodedPassword = AntiXssEncoder.HtmlEncode(validPassword, false); 
+            return MockDatabase.getDB().add(data.username, data.password);
             
             
            // AccountData secureData = new AccountData();
