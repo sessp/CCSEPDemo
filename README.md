@@ -1,5 +1,5 @@
 # Program Description 
-program description...
+This program is a website that has some other use which is not relevant to the assignment. The functionality that is relevant to the assignment is the logging of incorrect login attempts. When a user completes an invalid login attempt the server logs the inputted username and password. All the usernames and passwords of invalid login attempts are able to be seen by admins when they login. No real world website, or system for that matter, would operate like this. This is simply a proof of concept type of program. In this program when the user enters any password or username other than "admin" it counts as an invalid attempt and thus the attempt is logged. 
 
 # How to run the program
 how to run...
@@ -29,7 +29,7 @@ Cross-site scripting is a widespread breed of web vulnerabilities which allows h
 ## Prerequisites 
 
 * Visual Studio
-* Theoretically any OS will do however I highly recommend using Windows (since it is the .NET Framework)
+* Theoretically any OS will do however I highly recommend using **Windows** (since it is the .NET Framework)
 
 ## How to run
 How to run on windows
