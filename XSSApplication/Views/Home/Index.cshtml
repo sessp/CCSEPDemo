@@ -1,43 +1,49 @@
 ﻿@{
     ViewBag.Title = "Home";
 }
+<br />
+<div id="addAlert"></div>
 
+<div id="displayed">
     <div class="jumbotron">
         <h1>
             Second order (Blind) XSS
         </h1>
         <p class="lead">
-            Stored attacks are those where the injected script is permanently stored on the target servers,
+            Second Order XSS are those where the injected script is permanently stored on the target servers,
             such as in a database, in a message forum, visitor log, comment field, etc. The victim then retrieves the malicious
-            script from the server when it requests the stored information.
+            script from the server when it requests the stored information. This is second order because there's some inner program functionality
+            which consumes the attackers payload and the attack itself can happen over a short or even long time period.'
         </p>
         <div style="display:flex; padding-top:10px;">
-            <p><a href="../Home/SecondOrder" class="btn btn-primary btn-lg">Vulnerable Example &raquo;</a></p>
+            <p><a href="../Home/SecondOrder" class="btn btn-primary btn-lg">Run the demo! &raquo;</a></p>
             <!--<p style="padding-left: 20px"><a href="../Home/UnPersistent" class="btn btn-primary btn-lg">Patched Example &raquo;</a></p>-->
         </div>
     </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Learn more</h2>
-        <p>
-            Cross-site scripting is a widespread breed of web vulnerabilities which allows
-            hackers to inject malicious code from their untrusted websites into the webpages
-            that are are being viewed by unknowing victims.
-        </p>
-        <p><a class="btn btn-default" href="https://www.cse.wustl.edu/~jain/cse571-07/ftp/xsscript/index.html">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Information slides</h2>
-        <p>
-            Alongside this vulnerability there are informational slides about how to overcome
-            and defend against such vulnerability.</p>
-        <p><a class="btn btn-default" target="_blank" href="https://docs.google.com/presentation/d/1B_Zfi9v9PkJHw7hkjxCTDZ8ytnqP8fqlb0EMikIOrVw/edit?usp=sharing">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Credits</h2>
-        <p>> Rares Popa - 19159700</p>
-        <p>> Peter Sessarego - 19127639</p>
-        <p>> Sebastian Ng - 19092986</p>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Learn more</h2>
+            <p>
+                Cross-site scripting is a widespread breed of web vulnerabilities which allows
+                hackers to inject malicious code from their untrusted websites into the webpages
+                that are are being viewed by unknowing victims. This demo is for Second Order XSS.
+            </p>
+            <p><a class="btn btn-default" href="https://www.cse.wustl.edu/~jain/cse571-07/ftp/xsscript/index.html">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Information slides</h2>
+            <p>
+                Alongside this vulnerability there are informational slides about how to overcome
+                and defend against such vulnerability.
+            </p>
+            <p><a class="btn btn-default" target="_blank" href="https://docs.google.com/presentation/d/1B_Zfi9v9PkJHw7hkjxCTDZ8ytnqP8fqlb0EMikIOrVw/edit?usp=sharing">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Credits</h2>
+            <p>> Rares Popa - 19159700</p>
+            <p>> Peter Sessarego - 19127639</p>
+            <p>> Sebastian Ng - 19092986</p>
+        </div>
     </div>
 </div>

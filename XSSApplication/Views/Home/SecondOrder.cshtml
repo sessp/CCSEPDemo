@@ -43,8 +43,18 @@
                     Once you have submitted your vulnerability/test string, type in "<code>admin</code>" for both the username and password to
                     view the next page.
                 </p>
-                <!--<button onclick="testScript()"> Test! </button>-->
-                <input type="file" onchange="getTestFile(this)" />
+
+                <br /><br />
+                <h3>Test Harness</h3>
+                <p>
+                    In the "Test" directory, located in the project, there is a file "testInput" which
+                    you can use/upload through this button, instead of typing out each payload one by one.
+                    You simply upload your file, or just edit ours, and then the test will automatically
+                    add all those test strings and then all you have to do is type "<code>admin</code>" to view
+                    the next section of the demonstration.
+                </p>
+                <!---<button onclick="testScript()"> Test! </button> <input class="submit_form" type="file" onchange="getTestFile(this)" /> -->
+                <input id="inputB" type="file" />
 
                 <br /><br />
                 <div id="Content"></div>
@@ -53,26 +63,30 @@
     </div>
 </div>
 
-<script>
-        function changePage() {
-            $.ajax({
-                url: '/Home/Admin',
-                type: 'get',
-                processData: false,
-                success: function (data, textStatus, jQxhr) {
-                    $("#display").fadeOut('fast', function () {
-                        $('#display').html($(data).find('#replaceMe').html());
-                        $("#display").fadeIn('fast');
-                    });
-                },
-                error: function (jqXhr, textStatus, errorThrown) {
-                    console.log(errorThrown);
-                    var err = JSON.parse(jqXhr.responseText);
-                    alert(err.Message);
-                }
-            });
+<script nonce="123456">
+    function changePage() {
+        $.ajax({
+            url: '/Home/Admin',
+            type: 'get',
+            processData: false,
+            success: function (data, textStatus, jQxhr) {
+                $("#display").fadeOut('fast', function () {
+                    $('#display').html($(data).find('#replaceMe').html());
+                    $("#display").fadeIn('fast');
+                    updateLog();
+                });
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+                var err = JSON.parse(jqXhr.responseText);
+                alert(err.Message);
+            }
+        });
     }
 
+    $('#inputB').change(function () {
+        getTestFile(this);
+    });
 
     $('.submit_form').on('click', function () {
         var username = $("#username").val();
@@ -86,12 +100,10 @@
             processData: false,
             success: function (data, textStatus, jQxhr) {
                 console.log(data);
-                if (data == true)
-                {
+                if (data == true) {
                     changePage();
                 }
-                else
-                {
+                else {
                     createAlert('Error', 'Your username or password is incorrect, please try again.', ' alert-danger"');
                 }
             },
@@ -127,7 +139,6 @@
             '&times;</button>' + msg + '</div>');
     }
 
-    //$('.view_logss').on('click', function () {
     function updateLog() {
         $.ajax({
             url: '/api/Values/Update/',
@@ -141,10 +152,11 @@
                 console.log(entries);
                 if (entries.legnth != 0) {
                     for (var i = 0; i < entries.length; i++) {
+                        console.log('is this working');
                         $("#invalidLoginTable > tbody:last-child").append("<tr><td>" + i + "</td><td>" + entries[i].username + "</td><td>" + entries[i].password + "</td></tr>");
                     }
                 }
-                if(entries.length == 0) {
+                if (entries.length == 0) {
                     createAlert('Error', 'There are no invalid login attempts to display. Please go back to the login page and put some invalid login attempts.', ' alert-danger"');
                 }
                 //$("#Content").html(entries);
@@ -182,6 +194,8 @@
                 console.log(lines[i] + ' ' + lines.length);
                 testScript(lines[i]);
             }*/
+
+
         };
         r.onerror = function () {
             console.log(r.error);
