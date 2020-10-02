@@ -11,6 +11,11 @@ We recommend using Windows to test the **master** and **final_patched** branches
 # How to run the program
 When running on whatever platform (we recommend **Windows**) make sure you are running/cloning the programs located in the **master** and **final_patched** branches. Why are there 4 branches in total? Refer to the Note to marker section down the bottom of this readme.
 
+## Prerequisites 
+
+* Visual Studio
+* Theoretically any OS will do however I highly recommend using **Windows** (since it is the .NET Framework)
+
 ## How to run on windows
 * Download the app/clone the repository somewhere locally, preferably in your Visual Studio projects/solutions folder (however it doesnt really matter where).
 * Double click CCSEPAssignment.sln and open with the latest version of Visual Studio.
@@ -82,11 +87,6 @@ Cross-site scripting is a widespread breed of web vulnerabilities which allows h
 * Sebastian Ng - 19092986
 
 In terms of contribution each member was responsible for one of the parts on the marking rubric. Peter was responsible for the Demo program, Rares for the presentation and Sebastian for the slides.
-
-## Prerequisites 
-
-* Visual Studio
-* Theoretically any OS will do however I highly recommend using **Windows** (since it is the .NET Framework)
 
 
 # Note to marker (Couple of issues to address)
