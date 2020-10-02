@@ -1,6 +1,6 @@
 # Group 7 - CCSEP Demo
 
-![CCSEP - Demo](demo/home.png)
+![CCSEP - Demo](demo/login.png)
 
 ## About 
 
