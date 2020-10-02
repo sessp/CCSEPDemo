@@ -1,5 +1,12 @@
-# TODO 
-program description, how to run the program, how to detect, exploit and patch the bug
+# Program Description 
+program description...
+
+# How to run the program
+how to run...
+# Detecting, exploiting and patching the bug
+detecting...
+exploiting...
+patching...
 
 # Group 7 - CCSEP Demo
 
@@ -7,7 +14,7 @@ program description, how to run the program, how to detect, exploit and patch th
 
 ## About 
 
-Cross-site scripting is a widespread breed of web vulnerabilities which allows hackers to inject malicious code from their untrusted websites into the webpages that are are being viewed by unknowing victims.
+Cross-site scripting is a widespread breed of web vulnerabilities which allows hackers to inject malicious code from their untrusted websites into the webpages that are are being viewed by unknowing victims. Second Order cross side scripting is a specific type of XSS attack where the payload is consumed by some inner functionality in the program and affects multiple users when the inner functionality or some other functionality in the program reflects the payload to a number of users. Second Order XSS is not instaneous and it can take a significant amount of time before the program uses the inner functionality and reflects the payload back at unsuspecting users. 
 
 ## Google slides
 
@@ -22,9 +29,15 @@ Cross-site scripting is a widespread breed of web vulnerabilities which allows h
 ## Prerequisites 
 
 * Visual Studio
+* Theoretically any OS will do however I highly recommend using Windows (since it is the .NET Framework)
 
 ## How to run
+How to run on windows
 
+How to run on Linux
+
+
+How to run on Mac
 * Download the app.
 * Afterwards, Open Visual Studio
 * Then, File>Open click the folder and click the .sln
@@ -32,5 +45,5 @@ Cross-site scripting is a widespread breed of web vulnerabilities which allows h
 * Open a new browser window and go to http://127.0.0.1:8080
 
 ## Problems
-
+If you're having difficulties running the programs or want Peter to do an assignment demostration of any of the branches/programs then don't hesitate to contact him 19127639@student.curtin.edu.au
 If you're having any problems feel free to contact me! 19159700@student.curtin.edu.au
