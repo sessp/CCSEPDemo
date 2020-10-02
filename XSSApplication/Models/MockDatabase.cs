@@ -47,7 +47,7 @@ namespace CCSEPAssignment.Models
         public void PrintDatabase()
         {
             //For testing purposes.
-            foreach (var v in entries)
+            foreach (var v in entries.ToList())
             {
                 Debug.WriteLine("\n" + "Entry U - " + v.username + " P- " + v.password + "\n");
             }

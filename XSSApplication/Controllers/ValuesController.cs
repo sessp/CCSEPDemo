@@ -14,21 +14,21 @@ namespace CCSEPAssignment.Controllers
 {
     public class ValuesController : ApiController
     {
-        private RestClient server = new RestClient("https://localhost:44378/");
+        //private RestClient server = new RestClient("https://localhost:44378/");
 
         // GET api/<controller>
         [Route("api/Values/Update/")]
         [HttpGet]
         public List<AccountData> UpdateDB()
         {
-            // return MockDatabase.getDB().getData();
+           return MockDatabase.getDB().getData();
 
 
-            RestRequest req = new RestRequest("api/Values/Update/");
-            IRestResponse response = server.Get(req);
-            List<AccountData> newEntries = JsonConvert.DeserializeObject<List<AccountData>>(response.Content);
+           // RestRequest req = new RestRequest("api/Values/Update/");
+           // IRestResponse response = server.Get(req);
+           // List<AccountData> newEntries = JsonConvert.DeserializeObject<List<AccountData>>(response.Content);
             
-            return newEntries;
+           // return newEntries;
         }
 
         // GET api/<controller>
@@ -36,10 +36,10 @@ namespace CCSEPAssignment.Controllers
         [HttpGet]
         public void PrintDB()
         {
-            RestRequest req = new RestRequest("api/Values/printDB/");
-            IRestResponse response = server.Get(req);
+            //RestRequest req = new RestRequest("api/Values/printDB/");
+            //IRestResponse response = server.Get(req);
 
-            //MockDatabase.getDB().PrintDatabase();
+            MockDatabase.getDB().PrintDatabase();
         }
 
         // GET api/<controller>
@@ -48,13 +48,13 @@ namespace CCSEPAssignment.Controllers
         public int GetCount()
         {
             Debug.WriteLine("\n" + "TestGetCount" + "\n");
-            //return MockDatabase.getDB().getNumOfEntries();
+            return MockDatabase.getDB().getNumOfEntries();
 
 
-            RestRequest req = new RestRequest("api/Values/GetCount/");
-            IRestResponse response = server.Get(req);
-            int count = Convert.ToInt32(response.Content);
-            return count;
+           // RestRequest req = new RestRequest("api/Values/GetCount/");
+           // IRestResponse response = server.Get(req);
+           // int count = Convert.ToInt32(response.Content);
+           // return count;
         }
 
         // POST api/<controller>
@@ -62,24 +62,24 @@ namespace CCSEPAssignment.Controllers
         [HttpPost]
         public bool Post([FromBody]AccountData data)
         {
-            //CustomValidator validator = new CustomValidator();
-            //string validUsername = validator.antiXssValidation(data.username);
-            //string validPassword = validator.antiXssValidation(data.password);
-            //string encodedUsername = AntiXssEncoder.HtmlEncode(validUsername, false);
-            //string encodedPassword = AntiXssEncoder.HtmlEncode(validPassword, false); 
-            //return MockDatabase.getDB().add(data.username, data.password);
+            CustomValidator validator = new CustomValidator();
+            string validUsername = validator.antiXssValidation(data.username);
+            string validPassword = validator.antiXssValidation(data.password);
+            string encodedUsername = AntiXssEncoder.HtmlEncode(validUsername, false);
+            string encodedPassword = AntiXssEncoder.HtmlEncode(validPassword, false); 
+            return MockDatabase.getDB().add(encodedUsername, encodedPassword);
             
             
            // AccountData secureData = new AccountData();
            // secureData.username = validUsername;
            // secureData.password = validPassword;
             
-            RestRequest req = new RestRequest("api/Values/Add/");
-            req.AddJsonBody(data);
-            IRestResponse response = server.Post(req);
-            bool rStatus = Convert.ToBoolean(response.Content);
+            //RestRequest req = new RestRequest("api/Values/Add/");
+            //req.AddJsonBody(data);
+            //IRestResponse response = server.Post(req);
+            //bool rStatus = Convert.ToBoolean(response.Content);
             
-            return rStatus;
+            //return rStatus;
         }
     }
 }
